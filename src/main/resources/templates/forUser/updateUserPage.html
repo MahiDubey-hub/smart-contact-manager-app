@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{forUser/base::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <title> </title>
+</head>
+<body>
+<section>
+	
+	<div class="card">
+			<div class="card-body">
+			<h1 class="text-center">Update Details </h1>
+			<div class="container-fluid mt-1">
+				
+				<div class="row">
+					<div class="col-md-10 offset-md-1">
+					
+						
+						<form action="" th:object="${user}" th:action="@{/user/processUpdateUser}" method="post" class="mt-2" enctype="multipart/form-data">
+							
+							<!-- name -->
+							<div class="col-auto">
+							    <label class="form-label mb-1" for="firstName">Name</label>
+							    <div class="input-group mb-2">
+							        <input type="text" class="form-control" id="firstName" name="name" placeholder="Enter name here"
+									th:field="*{name}">
+							    </div>
+								
+																
+							</div>
+							
+							
+				
+
+							<!-- email-->
+							 <div class="col-auto">
+							    <label class="form-label mb-1" for="email">Email</label>
+							    <div class="input-group mb-2">
+							        
+							        <input type="text" th:field="*{email}" 
+									class="form-control " id="email" name="email" placeholder="Enter email here" disabled>
+							    </div>
+								
+								
+								
+							</div>
+
+							
+
+							<!-- desc-->
+							 <div class="col-auto">
+									<textarea name="about" id="description" th:text="${user.about}" placeholder="Enter something about yourself" rows="8" class="form-control mt-2"></textarea>
+							</div>
+
+							<!-- image-->
+							 <div class="form-group mt-2">
+								<label class="form-label mb-1" for="profileImg">Choose Profile Image</label><br>
+	    						<input type="file" class="form-control-file" id="profileImg" name="img">
+	  						</div>
+
+							<div class="container text-center">
+								<button type="submit" class="btn btn-dark">Save Details</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				
+			</div>
+			</div>				
+		</div>
+
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+</body>
+</html>

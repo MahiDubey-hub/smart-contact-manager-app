@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{forUser/base::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<title>User Dashboard</title>
+</head>
+<body>
+<section>
+	
+	
+	<div class="card">
+		<div class="card-body">
+			<h2 class="text-center">Your Contacts</h2>
+			
+			<!-- SEARCH -->
+			<div class="search-container">
+				<form class="d-flex">
+					
+			      	<input  onkeyup="search()" id="search-input" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+			      	<button class="btn btn-outline-success w-25" type="submit">Search</button>
+			    </form>
+				<div id="search-result">
+					
+				</div>
+			
+			</div>
+			<div class="table-responsive">
+			<table class="table table-hover">
+			  <thead>
+			    <tr>
+			      <th scope="col">
+					<a th:href="@{'/user/showContacts/' + ${currentPage} + '?sortField=cId&sortDir=' + ${reverseSortDir}}">
+					Contact Id
+					<span th:text="${sortDir == 'asc' ? '↑' : '↓'}"></span>
+				</th>
+			      <th scope="col">
+					<a th:href="@{'/user/showContacts/' + ${currentPage} + '?sortField=name&sortDir=' + ${reverseSortDir}}">
+					Name
+					<span th:text="${sortDir == 'asc' ? '↑' : '↓'}"></span>
+					</a>
+				</th>
+			      <th scope="col">
+					<a th:href="@{'/user/showContacts/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">
+					Email
+					<span th:text="${sortDir == 'asc' ? '↑' : '↓'}"></span>
+				</th>
+			      <th scope="col">
+					<a th:href="@{'/user/showContacts/' + ${currentPage} + '?sortField=phone&sortDir=' + ${reverseSortDir}}">
+					Phone
+					<span th:text="${sortDir == 'asc' ? '↑' : '↓'}"></span>
+				  </th>
+				  <th scope="col">Action</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+				
+				
+			    <tr th:each="c : ${contacts}">
+			      <th scope="row" th:text="${'USER'+c.cId}">1</th>
+			      <td>
+					<img class="my_profile_picture" src="" th:src="@{'/img/'+${c.image}}" alt="profile photo"/>
+					<span th:text="${c.name}"></span>
+				  </td>
+			      <td>
+					<a href="" th:href="@{'/user/'+${c.cId}+'/contact'}">
+					<span th:text="${c.email}"></span> 
+					</a>
+				  </td>
+			      <td th:text="${c.phone}">@mdo</td>
+				  <td>
+					<form method="post" th:action="@{'/user/update/'+${c.cId}}" class="mb-1">
+						<button type="submit" class="btn btn-secondary">Update</button>
+					</form>
+					
+					<a href="#" th:onclick="|deleteContact(${c.cId})|" class="btn btn-danger">Delete</a>
+				  </td>
+			    </tr>
+			    
+			  </tbody>
+			</table>
+			</div>
+			
+			<div th:if="${totalPages>1}">
+			<nav aria-label="Page navigation example">
+				
+			  <ul class="pagination">
+					
+			    <li th:classappend="${currentPage == 0 ? 'disabled' : ''}" class="page-item">
+					<a class="page-link"
+					th:href="@{${currentPage-1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">
+					 	Previous
+				 	</a>
+				</li>
+				
+			    <li th:classappend="${currentPage==i-1?'active':''}" th:each="i : ${#numbers.sequence(1,totalPages)}" class="page-item">
+					<a th:href="@{${i-1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}" class="page-link">
+						<span th:text="${i}"></span>
+					</a>
+				</li>
+				
+			    <li th:classappend="${currentPage+1 == totalPages ? 'disabled' : ''}" class="page-item">
+					<a th:href="@{${currentPage+1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}" class="page-link" href="#">
+						Next
+					</a>
+				</li>
+			  </ul>
+			</nav>
+			</div>
+		</div>
+		
+	</div>
+	
+</section>
+<script type="text/javascript" th:src="@{/js/script.js}"></script>
+</body>
+</html>

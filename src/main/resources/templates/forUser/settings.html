@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{forUser/base::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <title> </title>
+</head>
+<body>
+<section>
+	<div th:if="${session.message}" class="container">
+				
+				<div th:classappend="${session.message.type}" class="alert" role="alert">
+					  <span th:text="${session.message.content}"></span>
+				</div>
+			</div>
+	<div class="card">
+			<div class="card-body">
+			<h1 class="text-center mb-3"> Change Password </h1>
+			<div class="container-fluid mt-1">
+				
+				<div class="row">
+					<div class="col-md-10 offset-md-1">
+						<form action="#" th:action="@{/user/changePassword}" method="post">
+						  <div class="form-group mb-3">
+						    <label for="exampleInputOldPassword">Enter Old Password</label>
+						    <input name="oldPassword" type="password" class="form-control" id="exampleInputOldPassword" aria-describedby="emailHelp" placeholder="Old Password">
+						    
+						  </div>
+						  <div class="form-group mb-3">
+						    <label for="exampleInputPassword">Enter New Password</label>
+						    <input name="newPassword" type="password" class="form-control" id="exampleInputPassword" placeholder="New Password">
+						  </div>
+						  
+						  <button type="submit" class="btn btn-primary">Change</button>
+						  <button type="reset" class="btn btn-secondary">Reset</button>
+						</form>
+						
+						
+					</div>
+				</div>
+				
+			</div>
+			</div>				
+		</div>
+
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+</body>
+</html>

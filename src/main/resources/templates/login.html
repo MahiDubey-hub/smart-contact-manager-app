@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Home </title>
+</head>
+<body>
+	<section>
+	<div id="login">
+	        <div class="container">
+	            <div id="login-row" class="row justify-content-center align-items-center">
+	                <div id="login-column" class="col-md-6">
+	                    <div id="login-box" class="col-md-12">
+	                        <form id="login-form" class="form" th:action="@{/do_login}" action="" method="post">
+	                            <h3 class="text-center text-dark">Login</h3>
+								
+								<div th:if="${param.error}" class="alert alert-danger">
+									Invalid username and password.
+								</div>
+								<div th:if="${param.logout}" class="alert alert-success">
+									You have been logged out.
+								</div>
+																
+	                            <div class="form-group mb-2">
+	                                <label for="username" class="text-dark">Username:</label><br>
+	                                <input type="text" name="username" id="username" class="form-control">
+	                            </div>
+								
+	                            <div class="form-group mb-2">
+	                                <label for="password" class="text-dark">Password:</label><br>
+	                                <input type="password" name="password" id="password" class="form-control">
+	                            </div>
+								
+	                            <div class="form-group mb-2">
+	                                <!--<a th:href="@{/forgot}" > Forgot password?</a><br>-->
+									<input type="submit" name="submit" class="btn btn-info btn-md text-white bg-dark mt-2" value="Submit">
+	                            </div> 
+								
+								<p>Don't have an account! <a th:href="@{/signup}" href="#" class="text-info">Register here</a></p>
+								
+	                            
+	                        </form>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+		</section>
+</body>
+</html>

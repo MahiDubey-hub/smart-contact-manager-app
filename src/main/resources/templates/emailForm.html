@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <title> </title>
+</head>
+<body>
+<section>
+	
+	<div class="d-flex justify-content-center mt-5" style="width:100%">
+	<div class="card" style="width:50%">
+			<div class="card-body">
+			<h1 class="text-center mb-4"> Change Password </h1>
+			<div class="container-fluid mt-1">
+				
+				<div class="row">
+					<div class="col-md-10 offset-md-1">
+						<form action="#" th:action="@{/sendOTP}" method="post">
+						  <div class="form-group mb-3">
+						    <label for="email" class="mb-2">Enter Your Registered Email Address</label>
+						    <input required="required" name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter Email here">
+						  </div>
+						  
+						  
+						  <button type="submit" class="btn btn-primary mt-4">Get OTP</button>
+						  
+						</form>
+						
+						
+					</div>
+				</div>
+				
+			</div>
+			</div>				
+		</div>
+		</div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+</body>
+</html>
