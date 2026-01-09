@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: scm-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: smartcontact
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 0909
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+
+  app:
+    image: scm-app
+    container_name: scm-mysql-app
+    depends_on:
+      - mysql
+    ports:
+      - "9090:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: smartcontact
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 0909
+
+volumes:
+  mysql_data:
